@@ -128,3 +128,11 @@ dmypy.json
 .pyre/
 
 .idea/
+
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
+
+*.id
