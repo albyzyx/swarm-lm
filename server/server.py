@@ -407,14 +407,14 @@ class Server:
         # this delay decreases the probability of a race condition while choosing the best blocks to serve.
         time.sleep(random.random() * 2 * self.mean_block_selection_delay)
         module_infos = get_remote_module_infos(self.dht, self.module_uids, latest=True)
-        return block_selection.choose_best_blocks(self.num_blocks, module_infos)
+        return choose_best_blocks(self.num_blocks, module_infos)
 
     def _should_choose_other_blocks(self) -> bool:
         if self.strict_block_indices is not None:
             return False
 
         module_infos = get_remote_module_infos(self.dht, self.module_uids, latest=True)
-        return block_selection.should_choose_other_blocks(self.dht.peer_id, module_infos, self.balance_quality)
+        return should_choose_other_blocks(self.dht.peer_id, module_infos, self.balance_quality)
 
     def shutdown(self, timeout: Optional[float] = 5):
         self.stop.set()
